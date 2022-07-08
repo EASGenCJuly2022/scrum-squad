@@ -1,3 +1,4 @@
+package com.cognizant.scrum;
 
 public class Inventory {
 

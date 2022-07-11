@@ -26,7 +26,7 @@ public class Main {
                 }
             }
             else if(input.equals("inventory")){
-                System.out.println("Available games are...");
+                System.out.println("Available games are...Cyberpunk 2077, Super Smash Bros");
             }
             else{
                 System.out.println("Unknown command, please enter help if commands are needed");

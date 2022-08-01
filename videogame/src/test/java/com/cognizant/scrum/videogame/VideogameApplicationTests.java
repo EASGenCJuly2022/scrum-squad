@@ -1,10 +1,10 @@
-package com.cognizant.scrum.videogamestore;
+package com.cognizant.scrum.videogame;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class VideogamestoreApplicationTests {
+class VideogameApplicationTests {
 
 	@Test
 	void contextLoads() {

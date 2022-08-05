@@ -1,7 +1,13 @@
 package com.orderservice.orderservice;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
 public class Order {
 
+    @Id
+    @GeneratedValue
     private int orderID;
 
     private int customerID;
@@ -18,10 +24,13 @@ public class Order {
 
     private float orderTotal;
 
+    protected Order(){
+
+    }
 
 
-    public Order(int orderID, int customerID, String customerName, String customerAddress, String productName, int productQuantity, float productPrice, float orderTotal) {
-        this.orderID = orderID;
+    public Order(int customerID, String customerName, String customerAddress, String productName, int productQuantity, float productPrice, float orderTotal) {
+        super()
         this.customerID = customerID;
         this.customerName = customerName;
         this.customerAddress = customerAddress;

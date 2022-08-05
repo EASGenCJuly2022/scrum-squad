@@ -1,5 +1,59 @@
 package com.orderservice.orderservice;
 
+import java.sql.Date;
+
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+
+
+@Entity
+public class Order {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int orderId;
+
+    private Double orderTotal;
+    private Date orderDate;
+    public Order() {
+    }
+    public Order(Double orderTotal, Date orderDate) {
+        this.orderTotal = orderTotal;
+        this.orderDate = orderDate;
+    }
+    public Order(int orderId, Double orderTotal, Date orderDate) {
+        this.orderId = orderId;
+        this.orderTotal = orderTotal;
+        this.orderDate = orderDate;
+    }
+    public int getOrderId() {
+        return orderId;
+    }
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+    public Double getOrderTotal() {
+        return orderTotal;
+    }
+    public void setOrderTotal(Double orderTotal) {
+        this.orderTotal = orderTotal;
+    }
+    public Date getOrderDate() {
+        return orderDate;
+    }
+    public void setOrderDate(Date orderDate) {
+        this.orderDate = orderDate;
+    }
+    @Override
+    public String toString() {
+        return "Order [orderDate=" + orderDate + ", orderId=" + orderId + ", orderTotal=" + orderTotal + "]";
+    }
+
+
+}
+/* 
 public class Order {
 
     private int orderID;
@@ -112,3 +166,4 @@ public class Order {
                 '}';
     }
 }
+*/

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="1a5ad59f-0f63-40e2-8ac9-7b1de4aa4c08" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -40,5 +43,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

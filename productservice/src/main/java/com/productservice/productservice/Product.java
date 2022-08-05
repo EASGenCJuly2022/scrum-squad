@@ -1,22 +1,29 @@
 package com.productservice.productservice;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Product {
 	
+	@Id
+	@GeneratedValue
 	private int id;
 	private String productName;
 	private String type;
 	private float price;
-	private int number;
+	private int stock;
 	
 	public Product() {super();}
 
-	public Product(int id, String productName, String type, float price, int number) {
+	public Product(int id, String productName, String type, float price, int stock) {
 		super();
 		this.id = id;
 		this.productName = productName;
 		this.type = type;
 		this.price = price;
-		this.number = number;
+		this.stock = stock;
 	}
 
 	public int getId() {
@@ -51,18 +58,18 @@ public class Product {
 		this.price = price;
 	}
 
-	public int getNumber() {
-		return number;
+	public int getStock() {
+		return stock;
 	}
 
-	public void setNumber(int number) {
-		this.number = number;
+	public void setStock(int stock) {
+		this.stock = stock;
 	}
 
 	@Override
 	public String toString() {
 		return "Product [id=" + id + ", productName=" + productName + ", type=" + type + ", price=" + price
-				+ ", number=" + number + "]";
+				+ ", number=" + stock + "]";
 	}
 	
 	

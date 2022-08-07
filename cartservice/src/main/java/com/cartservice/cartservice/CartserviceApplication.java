@@ -31,24 +31,40 @@ public class CartserviceApplication {
 		*/
 
 		//store user selection in shopping cart array list
-ArrayList<String> inputs = new ArrayList<String>();
+ArrayList<String> cart = new ArrayList<String>();
 System.out.println("Enter the product you wish to purchase");
+int n =cart.size();
 while (true)
 {
-	inputs.add(scanner.next());
-
-System.out.println("Current shopping cart: " + inputs);
-System.out.println("Would you like to continue shopping? y/n");
- String answer = scanner.next();
-if (answer == "y"){
-	System.out.println("product list: " + items);
-
+String input = (scanner.nextLine());
+if (!input.contains("xbox") && !input.contains("ps5") && !input.contains("nintendo")) 	{
+	System.out.println("Item not found");
 }
 else {
+cart.add(input);
+System.out.println("Current shopping cart: " + cart);
+System.out.println("Would you like to continue shopping? y/n");
+ String answer = scanner.next();
+if (answer.equalsIgnoreCase("n")){
+	System.out.println("You final shopping cart is: " + cart);
+break;
+}
+else if(answer.equalsIgnoreCase("y")){
+	if (!input.contains("xbox") && !input.contains("ps5") && !input.contains("nintendo")) 	{
+	System.out.println("Item not found");
 	
-	return;
+}
+}
+
+
+else {
+	
+	System.out.println("Current shopping cart: " + cart);
+	System.out.println("product list: " + items);
+	System.out.println("Enter the product you wish to purchase");
 
 }		
+}
 
 		//if continue shopping, repeat loop from top, if checkout, end loop
 	

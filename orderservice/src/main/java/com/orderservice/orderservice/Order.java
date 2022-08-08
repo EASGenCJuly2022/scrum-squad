@@ -38,6 +38,9 @@ public class Order {
         this.orderTotal = orderTotal;
     }
 
+    public Order() {
+    }
+
     public int getOrderID() {
         return orderID;
     }

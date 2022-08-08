@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CartserviceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CartserviceApplication.class, args);
+		/* SpringApplication.run(CartserviceApplication.class, args);
 		Scanner scanner = new Scanner(System.in);
 		//print list of offered products
 		ArrayList<String> items = new ArrayList<String>();
@@ -28,7 +28,7 @@ public class CartserviceApplication {
 			System.out.println("Enter the quantity you wish to purchase");
         int itemQuantity = scanner.nextInt();
 		}
-		*/
+		
 
 		//store user selection in shopping cart array list
 ArrayList<String> cart = new ArrayList<String>();
@@ -70,6 +70,6 @@ else {
 	
 
 
-}
-}
+} */
+} 
 }

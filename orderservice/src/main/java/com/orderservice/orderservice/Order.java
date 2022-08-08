@@ -1,11 +1,14 @@
 package com.orderservice.orderservice;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.GenerationType;
 
 
+@Entity 
 public class Order {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int orderID;
 
     private int customerID;
@@ -23,7 +26,7 @@ public class Order {
     private float orderTotal;
 
 
-    @Entity
+    
     public Order(int orderID, int customerID, String customerName, String customerAddress, String productName, int productQuantity, float productPrice, float orderTotal) {
         this.orderID = orderID;
         this.customerID = customerID;

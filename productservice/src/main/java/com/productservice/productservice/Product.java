@@ -1,18 +1,29 @@
 package com.productservice.productservice;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="products")
 public class Product {
 	
 	@Id
 	@GeneratedValue
 	private int id;
+	
+	@Column(name="product_name")
 	private String productName;
+	
+	@Column(name="product_type")
 	private String type;
+	
+	@Column(name="price")
 	private float price;
+	
+	@Column(name="stock")
 	private int stock;
 	
 	public Product() {super();}

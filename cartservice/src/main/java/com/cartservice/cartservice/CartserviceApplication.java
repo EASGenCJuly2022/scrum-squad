@@ -12,58 +12,63 @@ public class CartserviceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CartserviceApplication.class, args);
 		Scanner scanner = new Scanner(System.in);
-		//print list of offered products
+
+		//generate list of offered products
 		ArrayList<String> items = new ArrayList<String>();
 		items.add("xbox");
 		items.add("ps5");
 		items.add("nintendo");
+
+		//display product list for user to view
 		System.out.println("product list: " + items);
-		
-		//ask user to select product from list
-		//System.out.println("Enter the product you wish to purchase");
-        //String customerSelection = scanner.nextLine();
 
-		//if product type = conosole or accessory, ask user for quantity, else 
-		/*if(customerSelection.type = "console" || "accesory"){
-			System.out.println("Enter the quantity you wish to purchase");
-        int itemQuantity = scanner.nextInt();
-		}
-		*/
-
-		//store user selection in shopping cart array list
+//establish new array list		
 ArrayList<String> cart = new ArrayList<String>();
-System.out.println("Enter the product you wish to purchase");
-int n =cart.size();
+
+//create infinte while loop
 while (true)
 {
-String input = (scanner.nextLine());
+// ask user which product they would like to buy
+System.out.println("Enter the product you wish to purchase");
+String input = (scanner.next());
+
+// if item is not listed as a product, display item not found and ask user to enter product again
 if (!input.contains("xbox") && !input.contains("ps5") && !input.contains("nintendo")) 	{
 	System.out.println("Item not found");
 }
+
+//add user item choice to shopping cart list
 else {
 cart.add(input);
+
+//display the users shopping cart
 System.out.println("Current shopping cart: " + cart);
+
+//ask user if they would like to continue shopping
 System.out.println("Would you like to continue shopping? y/n");
- String answer = scanner.next();
+String answer = scanner.next();
+
+//if no, display shopping cart and end loop
 if (answer.equalsIgnoreCase("n")){
-	System.out.println("You final shopping cart is: " + cart);
+	System.out.println("Your final shopping cart is: " + cart);
+	System.out.println("Continuing to checkout...");
 break;
 }
+
+//if yes, display current shopping cart, list of products, and return to top of loop
 else if(answer.equalsIgnoreCase("y")){
-	if (!input.contains("xbox") && !input.contains("ps5") && !input.contains("nintendo")) 	{
-	System.out.println("Item not found");
-	
-}
-}
-
-
-else {
-	
 	System.out.println("Current shopping cart: " + cart);
 	System.out.println("product list: " + items);
-	System.out.println("Enter the product you wish to purchase");
+	
+	
+}
 
-}		
+
+
+//else {
+	//System.out.println("Please enter y or n");
+	
+//}		
 }
 
 		//if continue shopping, repeat loop from top, if checkout, end loop

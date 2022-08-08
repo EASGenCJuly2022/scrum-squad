@@ -26,6 +26,8 @@ public class Customer {
 
     @Column(nullable=false)
     private int phone;
+    public Customer() {
+    }
     public Customer(String firstName, String lastName, String gender, String email, int phone) {
         this.firstName = firstName;
         this.lastName = lastName;

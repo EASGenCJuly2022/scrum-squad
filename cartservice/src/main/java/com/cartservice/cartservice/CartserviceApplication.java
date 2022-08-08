@@ -10,9 +10,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class CartserviceApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(CartserviceApplication.class, args);
-		Scanner scanner = new Scanner(System.in);
+		SpringApplication.run(CartserviceApplication.class, args);}}
 
+		
+		/*Scanner scanner = new Scanner(System.in);
 		//generate list of offered products
 		ArrayList<String> items = new ArrayList<String>();
 		items.add("xbox");
@@ -71,10 +72,9 @@ else if(answer.equalsIgnoreCase("y")){
 //}		
 }
 
-		//if continue shopping, repeat loop from top, if checkout, end loop
 	
 
 
 }
 }
-}
+}*/

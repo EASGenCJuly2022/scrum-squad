@@ -10,8 +10,7 @@ import javax.persistence.Table;
 @Table(name="cart")
 public class Cart {
     @Id
-    @GeneratedValue
-    private int cartId;
+    private int itemId;
     @Column(name="user_id")
     private int userId;
     @Column(name="product_name")
@@ -23,19 +22,19 @@ public class Cart {
         super();
     }
 
-    public Cart(int cartId, int userId, String productName, float productPrice) {
-        this.cartId = cartId;
+    public Cart(int itemId, int userId, String productName, float productPrice) {
+        this.itemId = itemId;
         this.userId = userId;
         this.productName = productName;
         this.productPrice = productPrice;
     }
 
-    public int getCartId() {
-        return cartId;
+    public int getitemId() {
+        return itemId;
     }
 
-    public void setCartId(int cartId) {
-        this.cartId = cartId;
+    public void setitemId(int cartId) {
+        this.itemId = cartId;
     }
 
     public int getUserId() {
@@ -64,7 +63,7 @@ public class Cart {
 
     @Override
     public String toString() {
-        return "Cart [cartId=" + cartId + ", productName=" + productName + ", productPrice=" + productPrice
+        return "Cart [itemId=" + itemId + ", productName=" + productName + ", productPrice=" + productPrice
                 + ", userId=" + userId + "]";
     }
 

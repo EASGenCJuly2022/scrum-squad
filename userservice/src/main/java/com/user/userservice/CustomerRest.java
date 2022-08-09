@@ -25,6 +25,11 @@ public class CustomerRest {
     private CustomerRepository repo;
     
     //Provides the REST api for the user service
+
+    @GetMapping("/test")
+    public String returnTest(){
+        return "Connection established! Clear for takeoff!";
+    }
     @GetMapping("/users")
     public List<Customer> retrieveAll(){
         return repo.findAll();

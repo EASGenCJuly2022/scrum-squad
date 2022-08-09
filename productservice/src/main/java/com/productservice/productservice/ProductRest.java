@@ -12,6 +12,7 @@ public class ProductRest {
 	
 	@Autowired
 	private ProductRepository serv;
+
 	
 	
 	@GetMapping("/products")
@@ -19,6 +20,7 @@ public class ProductRest {
 	{
 		return serv.findAll();
 	}
+	
 	
 	@GetMapping("/products/{name}")
 	public Product retrieveSingleProduct(@PathVariable String name)
@@ -32,6 +34,5 @@ public class ProductRest {
 	{
 		return serv.categoryProducts(type);
 	}
-
 
 }

@@ -43,6 +43,14 @@ public class CustomerRest {
         return cust.get();
 
     }
+    @GetMapping("/users/find/{first}_{last}")
+    public Customer retrieveOneCustomer(@PathVariable String first, @PathVariable String last){
+        Customer cust = repo.findOneUser(first, last);
+        if(cust == null){
+            throw new CustomerNotFoundException("not found - name: " + first + last);
+        }
+        return cust;
+    }
     @DeleteMapping("/users/{id}")
     public void deleteUser(@PathVariable int id){
         repo.deleteById(id);
@@ -53,5 +61,4 @@ public class CustomerRest {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(saveCust.getId()).toUri();
         return ResponseEntity.created(location).build();
     }
-
 }

@@ -10,8 +10,10 @@ public class CartDao {
     @Autowired
     private CartRepository repository;
 
-    public void saveCart(Cart cart){
-        this.repository.save(cart);
+    public Cart save(Cart cart){
+        if (cart.getCartId() != 0){
+       }
+        return cart;
     }
 
     public List<Cart> findAllCarts(){

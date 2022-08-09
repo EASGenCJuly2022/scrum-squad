@@ -11,27 +11,27 @@ import org.springframework.web.bind.annotation.RestController;
 public class ProductRest {
 	
 	@Autowired
-	private ProductDao service;
+	private ProductRepository service;
 	
 	
 	@GetMapping("/products")
 	public List<Product> retrieveAllProducts() 
 	{
-		return service.findAllProducts();
+		return service.findAll();
 	}
-	
 	
 	@GetMapping("/products/{name}")
 	public Product retrieveSingleProduct(@PathVariable String name)
 	{
-		return service.findByName(name);
+		return service.singleProduct(name);
 	}
 	
 	
 	@GetMapping("/products/category/{type}")
 	public List<Product> retrieveProductByType(@PathVariable String type)
 	{
-		return service.categorySearch(type);
+		return service.categoryProducts(type);
 	}
+
 
 }

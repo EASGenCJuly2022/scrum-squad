@@ -3,8 +3,14 @@ package com.main.maindriver;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
 import java.util.Scanner;
 import java.util.List;
+
+import org.apache.kafka.clients.producer.KafkaProducer;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.clients.producer.ProducerRecord;
+import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.http.HttpEntity;
@@ -19,7 +25,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 @SpringBootApplication
 public class MaindriverApplication {
 	public static void createPost(String f, String l, String g, String e, int p, RestTemplate temp){
-		String url = "http://localhost:8080/users";
+		String url = "http://localhost:8091/users";
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_JSON);
 		headers.setAccept(Collections.singletonList(MediaType.APPLICATION_JSON));
@@ -68,7 +74,7 @@ public class MaindriverApplication {
 				System.out.println("Enter your first and last name to continue: ");
 				String first = scan.nextLine();
 				String last = scan.nextLine();
-				String uri = String.format("http://localhost:8080/users/find/%s_%s", first, last);
+				String uri = String.format("http://localhost:8091/users/find/%s_%s", first, last);
 				currentCustomer = restT.getForObject(uri, Customer.class);
 				System.out.println(currentCustomer);
 				//System.out.println(client.get().uri(uri).retrieve().bodyToMono(String.class).block());
@@ -122,12 +128,12 @@ public class MaindriverApplication {
 			//CART COMMANDS
 
 			else if(choice.equals("cart")){
-				CartMap[] list = restT.getForObject("http://localhost:8083/cart", CartMap[].class);
+				CartMap[] list = restT.getForObject("http://localhost:8084/cart", CartMap[].class);
 				if(list.length == 0){System.out.println("Cart empty! Add products to continue");}
 				else{for(int i=0;i<list.length;i++){System.out.println(list[i]);}}
 			}
 			else if(choice.equals("clear cart")){
-				restT.delete("http://localhost:8083/cart");
+				restT.delete("http://localhost:8084/cart");
 				System.out.println("Cart emptied!");
 			}
 			else if(choice.equals("add cart")){
@@ -139,7 +145,7 @@ public class MaindriverApplication {
 					String name = scan.nextLine();
 					String url = "http://localhost:8090/products/" + name;
 					Product prod = restT.getForObject(url, Product.class);
-					createPost(currentCustomer.getId(), prod.getId(), prod.getProductName(), prod.getPrice(), "http://localhost:8083/cart", restT);
+					createPost(currentCustomer.getId(), prod.getId(), prod.getProductName(), prod.getPrice(), "http://localhost:8084/cart", restT);
 				};
 
 			}
@@ -148,7 +154,7 @@ public class MaindriverApplication {
 					System.out.println("Please log into an account by entering customer");
 				}
 				else{
-					CartMap[] list = restT.getForObject("http://localhost:8083/cart", CartMap[].class);
+					CartMap[] list = restT.getForObject("http://localhost:8084/cart", CartMap[].class);
 					if(list.length == 0){System.out.println("Cart empty! Add products to continue");}
 					else{
 						for(int i = 0; i< list.length; i++){
@@ -156,13 +162,32 @@ public class MaindriverApplication {
 							int ii = list[i].getItemId();
 							String n = list[i].getItemName();
 							float p = list[i].getItemPrice();
-							createPost(u, ii, n, p, "http://localhost:8083/cart/order", restT);
+							createPost(u, ii, n, p, "http://localhost:8084/cart/order", restT);
 						}
+						
+						//Kafka Producer code
+						Producer.produceMessage();
+						/*
+						Properties properties = new Properties();
+						String bootstrapServer = "127.0.0.1:9092";
+						
+						properties.setProperty(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServer);
+						properties.setProperty(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+						properties.setProperty(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG,StringSerializer.class.getName());
+						
+						KafkaProducer <String, String> firstProducer = new KafkaProducer<String, String>(properties);
+						
+						ProducerRecord <String, String> record = new ProducerRecord<String, String>("product_message", "inventory updated");
+						
+						firstProducer.send(record);
+						firstProducer.flush();
+						firstProducer.close();
+						*/
 					}
 				}
 			}
 			else if(choice.equals("orders")){
-				Order[] list = restT.getForObject("http://localhost:8083/orders/" +currentCustomer.getId(), Order[].class);
+				Order[] list = restT.getForObject("http://localhost:8084/orders/" +currentCustomer.getId(), Order[].class);
 				for(int i=0;i<list.length;i++){System.out.println(list[i]);}
 			}
 

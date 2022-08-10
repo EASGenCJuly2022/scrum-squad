@@ -13,8 +13,6 @@ public class ProductRest {
 	@Autowired
 	private ProductRepository serv;
 
-	
-	
 	@GetMapping("/products")
 	public List<Product> retrieveAllProducts() 
 	{

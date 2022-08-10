@@ -10,12 +10,15 @@ import javax.persistence.Table;
 @Table(name="cart")
 public class Cart {
     @Id
-    private int itemId;
-    @Column(name="user_id")
+    @Column(name="user_id", nullable = false)
     private int userId;
-    @Column(name="product_name")
+
+    @Column(name="item_id", nullable = false)
+    private int itemId;
+    
+    @Column(name="product_name", nullable = false)
     private String productName;
-    @Column(name="product_price")
+    @Column(name="product_price", nullable = false)
     private float productPrice;
    
     public Cart() {

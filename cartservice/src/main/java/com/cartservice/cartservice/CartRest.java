@@ -20,27 +20,42 @@ public class CartRest {
     @Autowired
     private CartRepository service;
 
-    @GetMapping("/cart")
+    @Autowired
+    private CartData data;
+
+   /* @GetMapping("/cart")
     public List<Cart> retrieveAllCarts(){
         return service.findAll();
+    }*/
+    @GetMapping("/cart")
+    public List<CartMap> returnCartData(){
+        return data.getList();
     }
-
+    /*@GetMapping("/cart/{id}")
+    public List<Cart> retrieveUserCart(@PathVariable int id){
+        return service.findUserCart(id);
+    }*/
+    @GetMapping("/cart/test")
+    public String testCart(){
+        data.populate();
+        return "Test complete!";
+    }
     @PostMapping("/cart")
+    public void addToCart(@Validated @RequestBody CartMap cart){
+        data.addTo(cart);
+    }
+    @DeleteMapping("/cart")
+    public void removeFromCart(){
+        data.deleteUserCart();
+    }
+    /*@PostMapping("/cart")
     public ResponseEntity<Object> createCart(@Validated @RequestBody Cart cart){
             Cart savedCart = service.save(cart);
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedCart.getitemId()).toUri();
         return ResponseEntity.created(location).build();
-    }
-
-    /*@DeleteMapping("/cart/{itemId}")
-    public ResponseEntity<Object> deleteItem(@PathVariable int itemId){
-    Cart deleteCart = service.deleteById(itemId);
-    URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(deleteCart.getitemId()).toUri();
-    return ResponseEntity.created(location).build();
-    }
-    */
-    @DeleteMapping("/cart/{id}")
+    }*/
+   /*  @DeleteMapping("/cart/{id}")
     public void deleteUser(@PathVariable int id){
         service.deleteById(id);
-    }
+    }*/
 }

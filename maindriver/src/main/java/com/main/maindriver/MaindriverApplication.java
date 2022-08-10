@@ -46,7 +46,7 @@ public class MaindriverApplication {
 		map.put("itemPrice", p);
 		HttpEntity<Map<String, Object>> entity = new HttpEntity<>(map, headers);
 		t.postForEntity(url, entity, String.class);
-		System.out.println("Added item to cart!");
+		System.out.println("Added!!");
 
 	}
 	
@@ -73,7 +73,7 @@ public class MaindriverApplication {
 				System.out.println(currentCustomer);
 				//System.out.println(client.get().uri(uri).retrieve().bodyToMono(String.class).block());
 			}
-			else if(choice.equals("create")){
+			else if(choice.equals("create customer")){
 				System.out.println("Creating a customer...");
 				System.out.println("Enter your first name: ");
 				String first = scan.nextLine();
@@ -87,7 +87,7 @@ public class MaindriverApplication {
 				int number = Integer.parseInt(scan.nextLine());
 				createPost(first, last, gender, email, number, restT);		
 			}
-			else if(choice.equals("current")){
+			else if(choice.equals("current customer")){
 				System.out.printf("Current customer is: %s %s, with id: %d\n", currentCustomer.getFirstName(), currentCustomer.getLastName(), currentCustomer.getId());
 			}
 
@@ -143,12 +143,37 @@ public class MaindriverApplication {
 				};
 
 			}
+			else if(choice.equals("checkout")){
+				if(currentCustomer.getId() ==0){
+					System.out.println("Please log into an account by entering customer");
+				}
+				else{
+					CartMap[] list = restT.getForObject("http://localhost:8083/cart", CartMap[].class);
+					if(list.length == 0){System.out.println("Cart empty! Add products to continue");}
+					else{
+						for(int i = 0; i< list.length; i++){
+							int u = list[i].getUserId();
+							int ii = list[i].getItemId();
+							String n = list[i].getItemName();
+							float p = list[i].getItemPrice();
+							createPost(u, ii, n, p, "http://localhost:8083/cart/order", restT);
+						}
+					}
+				}
+			}
+			else if(choice.equals("orders")){
+				Order[] list = restT.getForObject("http://localhost:8083/orders/" +currentCustomer.getId(), Order[].class);
+				for(int i=0;i<list.length;i++){System.out.println(list[i]);}
+			}
 
 			//UTILITY COMMANDS
 
 			else if(choice.equals("exit")){
 				scan.close();
 				System.exit(1);
+			}
+			else if (choice.equals("help")){
+				System.out.println("Possible commands are: customer, create customer, current customer, inventory, cart, clear cart, add cart, checkout, and orders");
 			}
 		}
 	}

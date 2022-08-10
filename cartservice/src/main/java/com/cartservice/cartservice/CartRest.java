@@ -48,12 +48,17 @@ public class CartRest {
     public void removeFromCart(){
         data.deleteUserCart();
     }
-    /*@PostMapping("/cart")
-    public ResponseEntity<Object> createCart(@Validated @RequestBody Cart cart){
-            Cart savedCart = service.save(cart);
+    @PostMapping("/cart/order")
+    public ResponseEntity<Object> createCart(@Validated @RequestBody Order cart){
+            Order savedCart = service.save(cart);
             URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(savedCart.getitemId()).toUri();
         return ResponseEntity.created(location).build();
-    }*/
+    }
+    @GetMapping("/orders/{id}")
+    public List<Order> retrieveOrders(@PathVariable int id){
+        List<Order> order = service.findUserOrders(id);
+        return order;
+    }
    /*  @DeleteMapping("/cart/{id}")
     public void deleteUser(@PathVariable int id){
         service.deleteById(id);
